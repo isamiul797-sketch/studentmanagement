@@ -1,0 +1,43 @@
+{% extends "myapp/base.html" %}
+
+{% block content %}
+<div class="card shadow-sm rounded-3">
+  <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+    <h4 class="mb-0">📋 Student List</h4>
+    <a href="{% url 'create' %}" class="btn btn-light btn-sm">
+      ➕ Add Student
+    </a>
+  </div>
+
+  <div class="card-body p-0">
+    <table class="table table-hover mb-0">
+      <thead class="table-light">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Roll</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in students %}
+        <tr>
+          <td>{{ student.name }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.roll }}</td>
+          <td class="text-center">
+            <a href="{% url 'detail' student.pk %}" class="btn btn-outline-info btn-sm me-1">👁 View</a>
+            <a href="{% url 'edit' student.pk %}" class="btn btn-outline-warning btn-sm me-1">✏ Edit</a>
+            <a href="{% url 'delete' student.pk %}" class="btn btn-outline-danger btn-sm">🗑 Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4" class="text-center text-muted">No students found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock content %}

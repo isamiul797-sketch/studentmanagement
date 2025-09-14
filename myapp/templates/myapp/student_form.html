@@ -1,0 +1,30 @@
+{% extends "myapp/base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm rounded-3">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">{% if form.instance.pk %} ✏ Edit {% else %} ➕ Add {% endif %} Student</h4>
+        </div>
+        <div class="card-body">
+          <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}   {# widgets already used, so direct render #}
+
+            <div class="d-flex justify-content-between mt-4">
+              <a href="{% url 'list' %}" class="btn btn-outline-secondary">
+                ⬅ Back to List
+              </a>
+              <button type="submit" class="btn btn-success">
+                💾 Save
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

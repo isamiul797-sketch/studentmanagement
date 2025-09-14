@@ -1,0 +1,17 @@
+{% extends "myapp/base.html" %}
+
+{% block content %}
+<div class="card shadow-sm rounded-3">
+  <div class="card-body text-center">
+    <div class="alert alert-danger" role="alert">
+      ⚠️ Are you sure you want to delete <strong>"{{ student.name }}"</strong>?
+    </div>
+
+    <form action="" method="POST" class="d-inline">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger me-2">Yes, Delete</button>
+    </form>
+    <a href="{% url 'list' %}" class="btn btn-secondary">Cancel</a>
+  </div>
+</div>
+{% endblock content %}
